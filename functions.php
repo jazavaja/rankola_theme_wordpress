@@ -3,6 +3,21 @@
  * Rankola theme functions
  */
 
+register_nav_menus(
+    array(
+        'primary-menu' => __( 'Primary Menu' ),
+        // you can register more menu locations here
+    )
+);
+
+add_theme_support('custom-logo', array(
+    'height'      => 100,
+    'width'       => 400,
+    'flex-height' => true,
+    'flex-width'  => true,
+    'header-text' => array('site-title', 'site-description'),
+));
+
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
 });
@@ -107,7 +122,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
 
     // Hero image
     $wp_customize->add_setting('rankola_hero_image', [
-        'default'           => 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&h=400&fit=crop&crop=center',
+        'default'           => get_template_directory_uri() . '/images/hero.png',
         'sanitize_callback' => 'esc_url_raw',
     ]);
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'rankola_hero_image', [
@@ -250,7 +265,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
                 '5 AI Images / month',
                 'Basic WordPress Plugin',
                 'Community Support',
-                "Experience Rankola's power"
+                "Experience Rankola power"
             ]
         ],
         [
@@ -278,7 +293,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
             ]
         ],
         [
-            'name' => 'Agency', 'price' => '$499+', 'popular' => false,
+            'name' => 'Agency', 'price' => 'Contact Us', 'popular' => false,
             'cta' => 'Contact Sales',
             'features' => [
                 'Unlimited Articles & Images',
