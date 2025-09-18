@@ -290,10 +290,10 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
             'name' => 'Free', 'price' => '$0', 'popular' => false,
             'cta' => 'Get Started Free',
             'features' => [
-                '5 AI Articles / month',
-                '5 AI Images / month',
+                '1 AI Articles / month',
+                '3 AI Images / month',
+                'Unlimited Suggest title',
                 'Basic WordPress Plugin',
-                'Community Support',
                 "Experience Rankola power"
             ]
         ],
@@ -301,8 +301,8 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
             'name' => 'Starter', 'price' => '$19', 'popular' => true,
             'cta' => 'Choose Starter',
             'features' => [
-                '50 AI Articles / month',
-                '50 AI Images / month',
+                '10 AI Articles / month',
+                '30 AI Images / month',
                 'Full WordPress Plugin Access',
                 'Advanced SEO Features',
                 'Email Support',
@@ -313,8 +313,8 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
             'name' => 'Pro', 'price' => '$49', 'popular' => false,
             'cta' => 'Choose Pro',
             'features' => [
-                '200 AI Articles / month',
-                '200 AI Images / month',
+                '100 AI Articles / month',
+                '300 AI Images / month',
                 'Everything in Starter +',
                 'Advanced Schema Support',
                 'WooCommerce Integration',
