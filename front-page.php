@@ -105,23 +105,22 @@
             </div>
             <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <?php
-                // Get the features setting from the Customize Manager
                 $problems = get_theme_mod('rankola_problems_json');
                 $problems = json_decode($problems, true);
 
-                // Use the features data in your front-page.php template
-                if (!empty($problems)) : ?>
-                <?php foreach ($problems as $p) : ?>
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl h-full p-6 text-center">
-                        <div class="inline-block p-3 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full mb-4">
-                            ⚠️
+                if (!empty($problems)) :
+                    foreach ($problems as $p) :
+                        ?>
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl h-full p-6 text-center">
+                            <div class="inline-block p-3 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-full mb-4 text-2xl">
+                                <?php echo isset($p['icon']) ? esc_html($p['icon']) : '⚠️'; ?>
+                            </div>
+                            <p class="text-base font-medium text-slate-300">
+                                <?php echo esc_html($p['text']); ?>
+                            </p>
                         </div>
-                        <p class="text-base font-medium text-slate-300"><?php echo esc_html($p); ?></p>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; endif; ?>
             </div>
-            <?php endif; ?>
-
         </div>
         <p class="mt-8 text-center text-slate-500">Existing plugins like Yoast or Rank Math provide static suggestions,
             but they don't do the work for you.</p>
@@ -167,26 +166,28 @@
                     WordPress User</h2>
             </div>
             <div class="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!--          rankola_audience_json   -->
-
                 <?php
-                // Get the features setting from the Customize Manager
                 $aud = get_theme_mod('rankola_audience_json');
                 $aud = json_decode($aud, true);
 
-                // Use the features data in your front-page.php template
-                if (!empty($aud)) : ?>
-                <?php foreach ($aud as $a) : ?>
-                    <div class="flex flex-col items-center text-center">
-                        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-slate-800 mb-5">🔹</div>
-                        <h3 class="text-xl font-semibold text-white"><?php echo esc_html($a['title']); ?></h3>
-                        <p class="mt-2 text-slate-400 text-sm"><?php echo esc_html($a['desc']); ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <?php endif; ?>
+                if (!empty($aud)) :
+                    foreach ($aud as $a) :
+                        ?>
+                        <div class="flex flex-col items-center text-center">
+                            <div class="flex items-center justify-center w-16 h-16 rounded-full bg-slate-800 mb-5 text-2xl">
+                                <?php echo isset($a['icon']) ? esc_html($a['icon']) : '🔹'; ?>
+                            </div>
+                            <h3 class="text-xl font-semibold text-white">
+                                <?php echo esc_html($a['title']); ?>
+                            </h3>
+                            <p class="mt-2 text-slate-400 text-sm">
+                                <?php echo esc_html($a['desc']); ?>
+                            </p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif ?>
 
-        </div>
+            </div>
     </section>
 
     <!-- Comparison (simplified) -->
@@ -266,7 +267,7 @@
                     </div>
                     <div class="relative">
                         <div class="relative">
-                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=400&fit=crop&crop=center"
+                            <img src="<?php echo get_template_directory_uri() . '/images/hero.png' ?>"
                                  alt="SEO Success Dashboard" class="rounded-2xl shadow-2xl border border-white/10"/>
                             <div class="absolute inset-0 bg-gradient-to-tr from-purple-600/20 to-cyan-600/20 rounded-2xl"></div>
                             <div class="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-xl">
@@ -306,7 +307,7 @@
                             </div><?php endif; ?>
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-2xl font-bold text-white"><?php echo esc_html(isset($plan['name']) ? $plan['name'] : ''); ?></h3>
-<!--                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500"></div>-->
+                            <!--                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500"></div>-->
                         </div>
                         <div class="mb-6">
                             <div class="flex items-baseline">

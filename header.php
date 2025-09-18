@@ -48,9 +48,9 @@
                     ?>
                 </nav>
                 <div class="flex items-center">
-                    <a href="#pricing" class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-500 to-blue-500 rounded-md hover:opacity-90 transition-opacity">
+                    <a href="#pricing" class="hidden md:inline-flex items-center justify-center px-4 py-2 text-sm font-medium
+                    text-white bg-gradient-to-r from-purple-500 to-blue-500 rounded-md hover:opacity-90 transition-opacity">
                         Start Your Free Trial
-                        <span class="w-4 h-4 ml-2 inline-block">?</span>
                     </a>
                 </div>
             </div>

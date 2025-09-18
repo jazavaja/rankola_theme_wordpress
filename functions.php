@@ -173,12 +173,12 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         'priority' => 31,
     ]);
     $features_default = [
-        [ 'title' => 'AI-Generated Articles', 'image' => 'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&h=300&fit=crop&crop=center', 'desc' => 'Generate complete, SEO-optimized articles based on your keywords, tone, and user intent.' ],
-        [ 'title' => 'Automatic Schema Markup', 'image' => 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center', 'desc' => 'Automatically inserts the correct structured data (JSON-LD) for your content, including Article, Product, and FAQ schemas.' ],
-        [ 'title' => 'Full WooCommerce Support', 'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&crop=center', 'desc' => 'Supercharge your e-commerce store by automatically generating SEO-friendly product descriptions and meta tags.' ],
-        [ 'title' => 'Smart Metadata Generation', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center', 'desc' => 'Our AI analyzes your content and generates compelling metadata designed to maximize your click-through rate (CTR).' ],
-        [ 'title' => 'AI Image Generation & SEO', 'image' => 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=300&fit=crop&crop=center', 'desc' => "Automatically create relevant images that match your content's intent and generates optimized alt text for every image." ],
-        [ 'title' => 'Multi-Language Engine', 'image' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop&crop=center', 'desc' => 'Built-in, native support for both English and Persian (Farsi), a unique tool for global and local markets.' ],
+        [ 'title' => 'AI-Generated Articles', 'image' => get_template_directory_uri() . '/images/ai-generate.png', 'desc' => 'Generate complete, SEO-optimized articles based on your keywords, tone, and user intent.' ],
+        [ 'title' => 'Automatic Schema Markup', 'image' => get_template_directory_uri() . '/images/schema.png', 'desc' => 'Automatically inserts the correct structured data (JSON-LD) for your content, including Article, Product, and FAQ schemas.' ],
+        [ 'title' => 'Full WooCommerce Support', 'image' => get_template_directory_uri() . '/images/full-ecommerce.png', 'desc' => 'Supercharge your e-commerce store by automatically generating SEO-friendly product descriptions and meta tags.' ],
+        [ 'title' => 'Smart Metadata Generation', 'image' => get_template_directory_uri() . '/images/smart-meta.png', 'desc' => 'Our AI analyzes your content and generates compelling metadata designed to maximize your click-through rate (CTR).' ],
+        [ 'title' => 'AI Image Generation & SEO', 'image' => get_template_directory_uri() . '/images/image-ai.png', 'desc' => "Automatically create relevant images that match your content's intent and generates optimized alt text for every image." ],
+        [ 'title' => 'Multi-Language Engine', 'image' => get_template_directory_uri() . '/images/multi-lang.png', 'desc' => 'Built-in, native support for both English and Persian (Farsi), a unique tool for global and local markets.' ],
     ];
     $wp_customize->add_setting('rankola_features_json', [
         'default' => wp_json_encode($features_default),
@@ -196,19 +196,31 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         'priority' => 32,
     ]);
     $problems_default = [
-        'Manual content creation is slow and expensive.',
-        'Technical SEO, like schema markup, is complex and easy to get wrong.',
-        "Keeping up with Google\'s E-E-A-T standards requires constant effort.",
+        [
+            'text' => 'Manual content creation is slow and expensive.',
+            'icon' => '⌛',
+        ],
+        [
+            'text' => 'Technical SEO, like schema markup, is complex and easy to get wrong.',
+            'icon' => '⚙️',
+        ],
+        [
+            'text' => "Keeping up with Google\'s E-E-A-T standards requires constant effort.",
+            'icon' => '📉',
+        ],
     ];
+
     $wp_customize->add_setting('rankola_problems_json', [
-        'default' => wp_json_encode($problems_default),
+        'default'           => wp_json_encode($problems_default),
         'sanitize_callback' => 'rankola_sanitize_json',
     ]);
+
     $wp_customize->add_control('rankola_problems_json', [
-        'label' => __('Problems JSON (array of strings)', 'rankola'),
-        'type' => 'textarea',
+        'label'   => __('Problems JSON (array of {text, icon})', 'rankola'),
+        'type'    => 'textarea',
         'section' => 'rankola_problems',
     ]);
+
 
     // Solutions
     $wp_customize->add_section('rankola_solutions', [
@@ -236,11 +248,28 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
         'priority' => 34,
     ]);
     $audience_default = [
-        ['title' => 'Digital Marketing Agencies', 'desc' => 'Manage dozens of client websites efficiently. Automate content production and technical SEO to deliver faster results.'],
-        ['title' => 'E-commerce Store Owners', 'desc' => 'Bring your products to the first page of Google with automatically generated unique descriptions and technical SEO.'],
-        ['title' => 'SEO Freelancers & Content Creators', 'desc' => 'Deliver high-quality, optimized content to your clients 10x faster. Free up your time from repetitive tasks.'],
-        ['title' => 'Small Business Owners & Bloggers', 'desc' => 'Grow your organic traffic without a dedicated marketing team. Consistently publish high-quality content that ranks.'],
+        [
+            'title' => 'Digital Marketing Agencies',
+            'desc'  => 'Manage dozens of client websites efficiently. Automate content production and technical SEO to deliver faster results.',
+            'icon'  => '📈',
+        ],
+        [
+            'title' => 'E-commerce Store Owners',
+            'desc'  => 'Bring your products to the first page of Google with automatically generated unique descriptions and technical SEO.',
+            'icon'  => '🛒',
+        ],
+        [
+            'title' => 'SEO Freelancers & Content Creators',
+            'desc'  => 'Deliver high-quality, optimized content to your clients 10x faster. Free up your time from repetitive tasks.',
+            'icon'  => '✍️',
+        ],
+        [
+            'title' => 'Small Business Owners & Bloggers',
+            'desc'  => 'Grow your organic traffic without a dedicated marketing team. Consistently publish high-quality content that ranks.',
+            'icon'  => '🚀',
+        ],
     ];
+
     $wp_customize->add_setting('rankola_audience_json', [
         'default' => wp_json_encode($audience_default),
         'sanitize_callback' => 'rankola_sanitize_json',
@@ -342,7 +371,7 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     $wp_customize->add_control('rankola_cta_secondary_label', [ 'label' => __('CTA Secondary Label', 'rankola'), 'type' => 'text', 'section' => 'rankola_cta' ]);
     $wp_customize->add_setting('rankola_cta_secondary_link', [ 'default' => '#comparison', 'sanitize_callback' => 'esc_url_raw' ]);
     $wp_customize->add_control('rankola_cta_secondary_link', [ 'label' => __('CTA Secondary Link', 'rankola'), 'type' => 'url', 'section' => 'rankola_cta' ]);
-    $wp_customize->add_setting('rankola_cta_image', [ 'default' => 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=500&h=400&fit=crop&crop=center', 'sanitize_callback' => 'esc_url_raw' ]);
+    $wp_customize->add_setting('rankola_cta_image', [ 'default' => get_template_directory_uri() . '/images/hero.png', 'sanitize_callback' => 'esc_url_raw' ]);
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'rankola_cta_image', [ 'label' => __('CTA Image', 'rankola'), 'section' => 'rankola_cta', 'settings' => 'rankola_cta_image' ]));
 
     // Comparison
