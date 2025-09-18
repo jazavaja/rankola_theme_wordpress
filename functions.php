@@ -398,4 +398,28 @@ add_action('customize_register', function (WP_Customize_Manager $wp_customize) {
     ]);
 });
 
+function rankola_customize_register_footer(WP_Customize_Manager $wp_customize) {
+    $footer_links_default = [
+        ["label" => "Features", "url" => "#features"],
+        ["label" => "Pricing", "url" => "#pricing"],
+    ];
+
+    $wp_customize->add_section('rankola_footer', [
+        'title'    => __('Footer Settings', 'rankola'),
+        'priority' => 130,
+    ]);
+
+    $wp_customize->add_setting('rankola_footer_links', [
+        'default'           => wp_json_encode($footer_links_default),
+        'sanitize_callback' => 'rankola_sanitize_json',
+    ]);
+
+    $wp_customize->add_control('rankola_footer_links', [
+        'label'   => __('Footer Links (JSON)', 'rankola'),
+        'type'    => 'textarea',
+        'section' => 'rankola_footer',
+    ]);
+}
+
+add_action('customize_register', 'rankola_customize_register_footer');
 
